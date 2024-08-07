@@ -9,6 +9,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check for required secrets
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          PATH_TO_DEPLOY: ${{ secrets.PATH }}
+        run: |
+          missing_secrets=()
+          for secret in ACTIONS_DEPLOY_KEY HOST USERNAME PASSWORD PATH_TO_DEPLOY; do
+            if [ -z "${!secret}" ]; then
+              missing_secrets+=($secret)
+            fi
+          done
+          if [ ${#missing_secrets[@]} -ne 0 ]; then
+            echo "Error: The following required secrets are missing: ${missing_secrets[*]}"
+            exit 1
+          fi
+          echo "All required secrets are set."
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
 
