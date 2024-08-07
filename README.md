@@ -20,6 +20,7 @@ Questo repository contiene il frontend dell'applicazione. Il backend e le API so
 - **Framework**: [React](https://reactjs.org/) con [Hooks](https://reactjs.org/docs/hooks-intro.html)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
+- **Testing**: Jest e React Testing Library
 - **CI/CD**: GitHub Actions per integrazione continua e deployment automatizzato
 
 ## 📋 Prerequisiti
