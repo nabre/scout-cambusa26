@@ -103,8 +103,8 @@ Per contribuire attraverso test e feedback:
 
 ## 📜 Codice di Condotta
 
-Aderiamo al [Codice di Condotta di Contributor Covenant](CODE_OF_CONDUCT). Partecipando, ti impegni a mantenere un ambiente rispettoso e collaborativo. Qualsiasi forma di comportamento inappropriato sarà affrontata dai maintainer del progetto.
+Aderiamo al [Codice di Condotta di Contributor Covenant](CODE_OF_CONDUCT.md). Partecipando, ti impegni a mantenere un ambiente rispettoso e collaborativo. Qualsiasi forma di comportamento inappropriato sarà affrontata dai maintainer del progetto.
 
 ## 🙏 Ringraziamenti
 
-Il tuo contributo è fondamentale per il successo di questo progetto e per la buona riuscita del Campo Cantonale 2026. Ogni contributore sarà riconosciuto nel file [CONTRIBUTORS](CONTRIBUTORS).
+Il tuo contributo è fondamentale per il successo di questo progetto e per la buona riuscita del Campo Cantonale 2026. Ogni contributore sarà riconosciuto nel file [CONTRIBUTORS](CONTRIBUTORS.md).
