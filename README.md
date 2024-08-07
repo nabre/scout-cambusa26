@@ -93,10 +93,10 @@ Il deployment di frontend e backend è gestito separatamente:
 Per maggiori dettagli sul deployment del frontend, consulta `.github/workflows/deploy.yml`.
 
 ## 🤝 Contribuire
-Siamo aperti a contributi sia per il frontend che per il backend! Per favore, leggi le [linee guida per contribuire](CONTRIBUTING) prima di iniziare.
+Siamo aperti a contributi sia per il frontend che per il backend! Per favore, leggi le [linee guida per contribuire](CONTRIBUTING.md) prima di iniziare.
 
 ## 📄 Licenza
-Questo progetto è distribuito sotto la licenza MIT. Consulta il file [LICENSE](LICENSE) per tutti i dettagli.
+Questo progetto è distribuito sotto la licenza MIT. Consulta il file [LICENSE](LICENSE.md) per tutti i dettagli.
 
 ## 📞 Contatti
 Per domande o suggerimenti relativi al frontend o al backend, contatta il team di sviluppo a [email@esempio.com](mailto:email@esempio.com).
