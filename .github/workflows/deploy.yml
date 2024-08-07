@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages & host
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+
+      - name: Check Node.js and npm versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./dist
+          branch: gh-pages
+
+      - name: Install sshpass
+        run: sudo apt-get install sshpass -y
+
+      - name: Debug sshpass
+        run: |
+          which sshpass
+          sshpass -V
+          
+      - name: Deploy to host
+        env:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          PATH_TO_DEPLOY: ${{ secrets.PATH }}
+        run: |
+          export PATH=$PATH:/usr/bin
+          /usr/bin/sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
+            cd $PATH_TO_DEPLOY
+            git fetch origin gh-pages
+            git reset --hard origin/gh-pages
+            # Aggiungi qui altri comandi necessari per il tuo sito
+          EOF
+
+          

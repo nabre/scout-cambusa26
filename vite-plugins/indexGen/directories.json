@@ -1,0 +1,6 @@
+[
+    "src/components/pages" ,
+    "src/components/template" ,
+    "src/contexts" ,
+    "src/data" 
+]
