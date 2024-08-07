@@ -1,4 +1,4 @@
-# 🧮 Progetto - educalc
+# 🧮 Sti - campo cantonale 2026 - gestione cambusa
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Vite](https://img.shields.io/badge/Vite-5.3.4-646CFF.svg)](https://vitejs.dev/)
@@ -6,14 +6,14 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.7-38B2AC.svg)](https://tailwindcss.com/)
 
 ## 🌟 Caratteristiche Principali
-EduCalc è progettato per fornire strumenti avanzati di apprendimento personalizzato, focalizzati sul problem solving nell'ambito del calcolo professionale. L'obiettivo è integrare fenomeni fisici e tecniche matematiche in modo funzionale per supportare la produzione quotidiana nella vita professionale.
+In occasione del campo cantonale di scoutismo ticino che si terrà nel 2026 a Campoblenio, per la gestione delle derrate alimentari da distribuire ai differenti gruppi scout, la sezione logistica ha sviluppato questo stumento.
 
 ## 🛠 Stack Tecnologico
 
 - **Frontend**: [React](https://reactjs.org/) con [Hooks](https://reactjs.org/docs/hooks-intro.html) per una UI reattiva e componenti riutilizzabili.
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) per un design rapido e responsivo.
 - **Build Tool**: [Vite](https://vitejs.dev/) per un'esperienza di sviluppo ultra-rapida.
-- **Animazioni**: [Framer Motion](https://www.framer.com/motion/) per transizioni fluide e coinvolgenti.
+- **CI/CD**: GitHub Actions per integrazione continua e deployment automatizzato
 
 ## 📋 Prerequisiti
 
@@ -23,77 +23,84 @@ Prima di iniziare, assicurati di avere installato:
 - [npm](https://www.npmjs.com/) (6.14.0 o superiore) o [Yarn](https://yarnpkg.com/) (1.22.0 o superiore)
 - [Git](https://git-scm.com/) per il controllo versione
 
-## 🚀 Guida Rapida
 
-1. **Clona il Repository**
-   ```bash
-   git clone https://github.com/nabre/educalc.git
-   cd educalc
+## 🚀 Configurazione e Avvio
+
+1. **Clona il repository**
+   ```
+   git clone https://github.com/tuorepository/sti-campo-cantonale-2026.git
+   cd sti-campo-cantonale-2026
    ```
 
-2. **Installa le Dipendenze**
-   ```bash
+2. **Installa le dipendenze**
+   ```
    npm install
    # oppure
    yarn install
    ```
 
-3. **Avvia l'Ambiente di Sviluppo**
-   ```bash
+3. **Avvia l'ambiente di sviluppo**
+   ```
    npm run dev
    # oppure
    yarn dev
    ```
 
-4. **Apri nel Browser**
-   Visita [http://localhost:3000](http://localhost:3000) per vedere l'applicazione in azione.
+4. Apri `http://localhost:3000` nel tuo browser
 
-## 📦 Build e Deploy
 
-### Build Locale
+## 🏗 Struttura a Micro-Frontend
 
-Per creare una build di produzione ottimizzata:
+Il progetto è organizzato in micro-frontend per una migliore separazione delle responsabilità:
 
-```bash
-npm run build
-# oppure
-yarn build
+- `cambusa-core`: Gestione centrale e routing
+- `menu-planner`: Pianificazione dei menu
+- `inventory-manager`: Gestione dell'inventario
+- `distribution-system`: Sistema di distribuzione delle derrate
+
+Ogni micro-frontend è sviluppabile e testabile in modo indipendente.
+
+## 📁 Struttura del Codice
+
+```
+src/
+├── micro-frontends/
+│   ├── cambusa-core/
+│   ├── menu-planner/
+│   ├── inventory-manager/
+│   └── distribution-system/
+└── shared/
+    ├── components/
+    ├── utils/
+    └── hooks/
 ```
 
-I file ottimizzati saranno generati nella cartella `dist/`.
+## 🔧 Implementazione dello Sviluppo
 
-### 🔄 Continuous Deployment
+1. Crea un nuovo branch per ogni feature: `git checkout -b feature/nome-feature`
+2. Implementa la tua feature nel micro-frontend appropriato
+3. Scrivi test per la tua implementazione
+4. Fai commit delle tue modifiche: `git commit -am 'Aggiungi nuova feature'`
+5. Pusha il branch: `git push origin feature/nome-feature`
+6. Apri una Pull Request su GitHub
 
-Il progetto utilizza GitHub Actions per un processo di CI/CD automatizzato. Il workflow è definito in `.github/workflows/deploy.yml`.
+## 📢 Pubblicazione dell'Applicazione
 
-#### Processo di Deploy
+Il deployment è automatizzato tramite GitHub Actions:
 
-1. **Trigger**: Ogni push sul branch `main` attiva il workflow.
-2. **Build**: Il progetto viene compilato in un ambiente Node.js.
-3. **Test**: Vengono eseguiti test automatizzati per garantire la qualità del codice.
-4. **Deploy su GitHub Pages**: La build viene pubblicata sul branch `gh-pages`.
-5. **Sincronizzazione con Host Remoto**: I file vengono sincronizzati con un server di produzione.
+1. I merge in `develop` triggherano un deploy nell'ambiente di staging
+2. I merge in `main` triggherano un deploy in produzione
 
-#### Configurazione
+Per maggiori dettagli, consulta il file `.github/workflows/deploy.yml`.
 
-Configura le seguenti variabili segrete nel tuo repository GitHub:
+## 🤝 Contribuire
 
-- `ACTIONS_DEPLOY_KEY`: Token di accesso per GitHub Actions
-- `HOST`: Indirizzo IP o dominio del server di produzione
-- `USERNAME`: Nome utente SSH per l'accesso al server
-- `PASSWORD`: Password SSH (considera l'uso di chiavi SSH per una maggiore sicurezza)
-- `PATH`: Percorso di destinazione sul server remoto
-
-### Installazione sul Server Remoto
-
-Per una configurazione manuale sul server di produzione:
-
-1. Accedi al server via SSH
-2. Clona il repository:
-   ```bash
-   git clone https://github.com/nabre/educalc.git /path/to/educalc
-   ```
+Siamo aperti a contributi! Per favore, leggi le [linee guida per contribuire](CONTRIBUTING.md) prima di iniziare.
 
 ## 📄 Licenza
 
-IUl progetto è distribuito sotto la licenza MIT. Consulta il file [LICENSE](../../tree/develop?tab=License-1-ov-file#italiano) per tutti i dettagli.
+Questo progetto è distribuito sotto la licenza MIT. Consulta il file [LICENSE](LICENSE) per tutti i dettagli.
+
+## 📞 Contatti
+
+Per qualsiasi domanda o suggerimento, contatta il team di sviluppo a [email@esempio.com](mailto:email@esempio.com).
