@@ -8,8 +8,16 @@
   "scripts": {
     "start": "npm-run-all --parallel start:* ",
     "start:admin": "npm run start -w @scout-cambusa26/admin ",
+    "start:allestimento": "npm run start -w @scout-cambusa26/allestimento ",
+    "start:forniture": "npm run start -w @scout-cambusa26/forniture ",
+    "start:ordinazioni": "npm run start -w @scout-cambusa26/ordinazioni ",
+    "start:smistamento": "npm run start -w @scout-cambusa26/smistamento ",
     "build": "npm-run-all clean build:*",
     "build:admin": "npm run build -w @scout-cambusa26/admin",
+    "build:allestimento": "npm run build -w @scout-cambusa26/allestimento",
+    "build:forniture": "npm run build -w @scout-cambusa26/forniture",
+    "build:ordinazioni": "npm run build -w @scout-cambusa26/ordinazioni",
+    "build:smistamento": "npm run build -w @scout-cambusa26/smistamento",
     "clean": "rimraf dist"
   },
   "dependencies": {
