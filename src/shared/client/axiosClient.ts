@@ -2,9 +2,9 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 import { TOKEN_KEY } from '../constants/authConstants';
 
 // Determina l'URL di base in base all'ambiente
-const baseURL = process?.env?.NODE_ENV === 'development'
+const baseURL = "http://scout-cambusa26-server.test/api"  /*process?.env?.NODE_ENV === 'development'
   ? process.env.REACT_APP_API_URL_DEV
-  : process.env.REACT_APP_API_URL_PRODUCTION;
+  : process.env.REACT_APP_API_URL_PRODUCTION;*/
 
 // Creare un'istanza di axios con una configurazione di base
 const client = axios.create({
