@@ -1,12 +1,18 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
+
+// Determina l'URL di base in base all'ambiente
+const baseURL = process.env.NODE_ENV === 'development'
+  ? process.env.REACT_APP_API_URL_DEV
+  : 'https://api.yourproductiondomain.com';
+
 // Creare un'istanza di axios con una configurazione di base
-const axiosClient = axios.create({
-  baseURL: `/api`,
+const client = axios.create({
+  baseURL,
 });
 
 // Aggiungere un interceptor per le richieste
-axiosClient.interceptors.request.use((config) => {
+client.interceptors.request.use((config) => {
   if (config.headers) {
     config.headers.Authorization = `Bearer ${localStorage.getItem('TOKEN')}`;
   }
@@ -16,7 +22,7 @@ axiosClient.interceptors.request.use((config) => {
 });
 
 // Aggiungere un interceptor per le risposte
-axiosClient.interceptors.response.use((response: AxiosResponse) => {
+client.interceptors.response.use((response: AxiosResponse) => {
   return response;
 }, (error: AxiosError) => {
   if (error.response && error.response.status === 401) {
@@ -27,4 +33,4 @@ axiosClient.interceptors.response.use((response: AxiosResponse) => {
   return Promise.reject(error);
 });
 
-export default axiosClient;
+export default client;
