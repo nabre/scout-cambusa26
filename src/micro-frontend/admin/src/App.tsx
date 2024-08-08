@@ -1,9 +1,8 @@
 import React from 'react'
 
-
-function App() {
+const App: React.FC = () => {
   return (
-    <div className='bg-red-300'>
+    <div>
       <h1>Admin Dashboard</h1>
       {/* Aggiungi qui il contenuto del dashboard admin */}
     </div>
