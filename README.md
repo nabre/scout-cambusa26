@@ -54,41 +54,16 @@ Questo repository contiene il frontend dell'applicazione. Il backend e le API so
 
 5. Apri `http://localhost:3000` nel tuo browser
 
-## 🏗 Struttura a Micro-Frontend
-Il progetto frontend è organizzato in micro-frontend:
-
-- `cambusa-core`: Gestione centrale e routing
-- `menu-planner`: Pianificazione dei menu
-- `inventory-manager`: Gestione dell'inventario
-- `distribution-system`: Sistema di distribuzione delle derrate
-
-## 📁 Struttura del Codice Frontend
-```
-src/
-├── micro-frontends/
-│   ├── cambusa-core/
-│   ├── menu-planner/
-│   ├── inventory-manager/
-│   └── distribution-system/
-├── shared/
-│   ├── components/
-│   ├── utils/
-│   └── hooks/
-├── services/
-│   └── api.js
-├── App.jsx
-└── main.jsx
-```
 
 ## 🔗 Integrazione con il Backend
 - Il frontend comunica con il backend tramite API RESTful.
 - Le chiamate API sono centralizzate nel file `src/services/api.js`.
-- Per istruzioni su come configurare e avviare il backend, consulta il [README del repository backend](https://github.com/your-organization/backend-repo).
+- Per istruzioni su come configurare e avviare il backend, consulta il [README del repository backend](https://github.com/nabre/scout-cambusa26-server).
 
 ## 📢 Deployment
 Il deployment di frontend e backend è gestito separatamente:
 
-- **Frontend**: Deployato automaticamente su [Servizio di Hosting] tramite GitHub Actions.
+- **Frontend**: Deployato automaticamente tramite GitHub Actions.
 - **Backend**: Consulta il repository backend per i dettagli sul suo deployment.
 
 Per maggiori dettagli sul deployment del frontend, consulta `.github/workflows/deploy.yml`.
