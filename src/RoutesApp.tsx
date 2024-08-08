@@ -11,12 +11,12 @@ interface MicroFrontendProps {
 
 
 const microFontendsProps: MicroFrontendProps[] = [
-    {
-        path: "/",
-        label: "Home",
-        exact: true,
-        element: <></>//lazy(() => import('./routes.jsx')),
-    }
+    /* {
+         path: "/",
+         label: "Home",
+         exact: true,
+         element: <></>//lazy(() => import('./routes.jsx')),
+     }*/
 ]
 
 export const microFrontendLinks = microFontendsProps.map(({ label, path }) => ({ path, label }))
