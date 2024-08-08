@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import client from './axiosClient';
+import client from './apiEndpoint';
 
 class ApiCrudBase<T> {
   private rootPath: string;

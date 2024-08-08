@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import ApiCrudBase from '../client/ApiCrudBase';
 
-
 class ApiCrudThunks<T> {
     private api: ApiCrudBase<T>;
     public fetchAll: any;
     public create: any;
     public update: any;
-    public delete: any;
+    public remove: any;
 
     constructor(path: string) {
         this.api = new ApiCrudBase<T>(path);
@@ -32,7 +31,7 @@ class ApiCrudThunks<T> {
             return response;
         });
 
-        this.delete = createAsyncThunk(`${entity}/delete`, async (id: string) => {
+        this.remove = createAsyncThunk(`${entity}/delete`, async (id: string) => {
             const response = await this.api.delete(id);
             return response;
         });

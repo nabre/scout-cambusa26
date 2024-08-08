@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-
+import { TOKEN_KEY } from '../constants/authConstants';
 
 // Determina l'URL di base in base all'ambiente
 const baseURL = process?.env?.NODE_ENV === 'development'
@@ -14,7 +14,7 @@ const client = axios.create({
 // Aggiungere un interceptor per le richieste
 client.interceptors.request.use((config) => {
   if (config.headers) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('TOKEN')}`;
+    config.headers.Authorization = `Bearer ${localStorage.getItem( TOKEN_KEY)}`;
   }
   return config;
 }, (error: AxiosError) => {
@@ -26,7 +26,7 @@ client.interceptors.response.use((response: AxiosResponse) => {
   return response;
 }, (error: AxiosError) => {
   if (error.response && error.response.status === 401) {
-    localStorage.removeItem('TOKEN');
+    localStorage.removeItem( TOKEN_KEY);
     window.location.reload();
     return Promise.reject(error);
   }
