@@ -4,7 +4,7 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 // Determina l'URL di base in base all'ambiente
 const baseURL = process?.env?.NODE_ENV === 'development'
   ? process.env.REACT_APP_API_URL_DEV
-  : 'https://api.yourproductiondomain.com';
+  : process.env.REACT_APP_API_URL_PRODUCTION;
 
 // Creare un'istanza di axios con una configurazione di base
 const client = axios.create({
