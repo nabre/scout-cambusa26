@@ -1,0 +1,9 @@
+{
+    "name": "@scout-cambusa26/admin",
+    "version": "1.0.0",
+    "type":"module",
+    "scripts": {
+      "start": "vite ",
+      "build": "vite build  --emptyOutDir"
+    }
+  }
