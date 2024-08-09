@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       host: env.VITE_HOST || 'localhost',
-      port: 2600, // porta specifica per admin
+      port: 80, // porta specifica per admin
     },
     envDir,
     resolve: {

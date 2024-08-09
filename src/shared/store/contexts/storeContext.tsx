@@ -1,19 +1,18 @@
 import React, { createContext, useContext } from 'react';
 import { Provider } from 'react-redux';
 import store from '../store';
-import { useStoreValue } from '../hooks/useStoreValue';
+import { Store } from '@reduxjs/toolkit';
 
 interface StoreContextType {
-    useStoreValue: typeof useStoreValue;
+    store: Store;
 }
-
 
 const Context = createContext<StoreContextType | null>(null);
 
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const value = {
-        useStoreValue
+        store
     }
 
     return (

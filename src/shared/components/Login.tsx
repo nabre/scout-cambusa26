@@ -8,8 +8,11 @@ const Login: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        const success = await login({ email, password });
-        if (success) {
+        const credentials = { email, password };
+        console.log(credentials)
+        login(credentials);
+
+        if (true) {
             //   const { from } = location.state || { from: { pathname: "/" } };
             //history.replace(from);
         } else {

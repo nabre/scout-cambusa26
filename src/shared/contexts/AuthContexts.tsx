@@ -1,47 +1,15 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import authService from '../services/authService';
-import { LoginCredentials, AuthContextType, User } from '../types/authTypes';
-import { useStoreContext } from '#/store/contexts/storeContext';
+import { LoginCredentials } from '#/types/authTypes';
+import { useStoreValue } from '#/store/hooks/useStoreValue';
+import { useAccountActions } from '#/store/hooks/useAccountActions';
 
-const Context = createContext<AuthContextType | null>(null);
+const Context = createContext({ isAuthenticated: false, login: (credentials: LoginCredentials) => { }, logout: () => { }, user: null });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const {useStoreValue} = useStoreContext();
+    const { login, logout } = useAccountActions();
+
     const account = useStoreValue('account');
-    console.log('account:', account);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
-
-    useEffect(() => {
-        setIsAuthenticated(authService.isAuthenticated());
-    }, []);
-
-    const getUser = async () => {
-        try {
-            const response = await authService.getUser();
-            setUser(response);
-        } catch (error) {
-            console.error('Error retrieving user:', error);
-        }
-    };
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            getUser();
-        }
-    }, [isAuthenticated]);
-
-    const login = async (credential: LoginCredentials) => {
-        const success = await authService.login(credential);
-        setIsAuthenticated(success);
-        return success;
-    };
-
-    const logout = () => {
-        authService.logout();
-        setIsAuthenticated(false);
-        setUser(null);
-    };
+    const { isAuthenticated, user } = account;
 
     return (
         <Context.Provider value={{ isAuthenticated, login, logout, user }}>
@@ -49,7 +17,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         </Context.Provider>
     );
 };
-
 
 export const useAuthContext = () => {
     const context = useContext(Context);

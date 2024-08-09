@@ -7,10 +7,10 @@ export const login = createAsyncThunk<User, LoginCredentials>(
     'auth/login',
     async (credential, { rejectWithValue }): Promise<User | any> => {
         try {
-            // Simulazione di una chiamata API
             const response = await authService.login(credential)
             if (response) {
-                return await authService.getUser();
+                const user = await authService.getUser();
+                return user;
             }
             return null;
         } catch (error) {
