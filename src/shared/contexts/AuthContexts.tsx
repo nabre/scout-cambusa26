@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { LoginCredentials } from '#/types/authTypes';
+import React, { createContext, useEffect, useContext } from 'react';
+import { LoginCredentials, AuthContextType } from '#/types/authTypes';
 import { useStoreValue } from '#/store/hooks/useStoreValue';
 import { useAccountActions } from '#/store/hooks/useAccountActions';
 
-const Context = createContext({ isAuthenticated: false, login: (credentials: LoginCredentials) => { }, logout: () => { }, user: null });
+const Context = createContext<AuthContextType>({ isAuthenticated: false, login: (credentials: LoginCredentials) => { }, logout: () => { }, user: null });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { login, logout, getUser } = useAccountActions();
@@ -11,10 +11,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const { isAuthenticated, user, status } = account;
 
     useEffect(() => {
-
-        getUser();
-
-    }, []);
+        if (isAuthenticated) getUser();
+    }, [isAuthenticated]);
 
     if (status == 'loading') return <div>Loading...</div>
 

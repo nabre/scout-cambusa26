@@ -1,5 +1,5 @@
 import { useAuthContext } from '#/contexts/AuthContexts'
-import Login from '#/components/Login'
+import Login from '#/components/organisms/Login'
 import React from 'react'
 
 

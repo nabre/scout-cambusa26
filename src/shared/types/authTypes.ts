@@ -2,6 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  roles: string[];
 }
 
 export interface AuthState {
@@ -14,7 +15,7 @@ export interface LoginCredentials {
   password: string;
 }
 
-export interface AuthContextType extends AuthState {
+export interface AuthContextType extends AuthState {  
   login: (credential: LoginCredentials) => void;
   logout: () => void;
 }

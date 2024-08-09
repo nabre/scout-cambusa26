@@ -2,6 +2,7 @@ import authService from "#/services/authService";
 import { LoginCredentials, User } from "#/types/authTypes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
 // Thunk action per il login
 export const login = createAsyncThunk<User, LoginCredentials>(
     'auth/login',
@@ -38,6 +39,7 @@ export const getUser = createAsyncThunk(
         try {
             const response = await authService.getUser();
             return response;
+            return null;
         } catch (error) {
             return rejectWithValue((error as Error).message);
         }

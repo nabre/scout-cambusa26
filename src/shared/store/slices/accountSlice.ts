@@ -13,7 +13,7 @@ interface AccountState extends StateWithStatus {
 // Stato iniziale
 const initialState: AccountState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: authService.isAuthenticated(),
   status: 'idle',
   error: null
 };
@@ -53,7 +53,7 @@ const accountSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = authService.isAuthenticated();
       })
-      
+
       // Logout cases
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
