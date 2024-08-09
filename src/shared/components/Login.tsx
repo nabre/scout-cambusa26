@@ -3,8 +3,8 @@ import { useAuthContext } from '../contexts/AuthContexts';
 import { useStoreValue } from '#/store/hooks/useStoreValue';
 
 const Login: React.FC = () => {
-    const [email, setEmail] = useState('michel.brenna@edu.ti.ch');
-    const [password, setPassword] = useState('N@bre86L');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const { login, logout } = useAuthContext();
     const { isAuthenticated } = useStoreValue('account');
 
