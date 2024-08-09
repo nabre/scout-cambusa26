@@ -2,6 +2,8 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  email_verified: boolean;
+  impersonated:boolean;
   roles: string[];
 }
 

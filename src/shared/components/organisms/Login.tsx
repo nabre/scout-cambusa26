@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useAuthContext } from '../contexts/AuthContexts';
+import { useAuthContext } from '#/contexts/AuthContexts';
 import { useStoreValue } from '#/store/hooks/useStoreValue';
 
 const Login: React.FC = () => {
@@ -11,12 +11,6 @@ const Login: React.FC = () => {
     const handleSubmit = () => {
         const credentials = { email, password };
         login(credentials);
-        if (true) {
-            //   const { from } = location.state || { from: { pathname: "/" } };
-            //history.replace(from);
-        } else {
-            alert('Login fallito. Riprova.');
-        }
     };
 
     const handleLogout = () => {

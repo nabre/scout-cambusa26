@@ -1,20 +1,20 @@
-import { useAuthContext } from '#/contexts/AuthContexts';
-import {User} from '#/types/authTypes';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import AuthGuard from './AuthGuard';
+import { useAuthContext } from '#/contexts/AuthContexts';
+import { UNAUTHORIZED_PAGE } from '#/constants/pathPages';
 import { arrayIntersect } from '#/utils';
+import AuthGuard from './AuthGuard';
 
 interface Props {
     children: React.ReactNode;
-    requiredRole?: string[];
+    requiredRoles?: string[];
 }
 
-const RolesGuard: React.FC<Props> = ({ children, requiredRole }) => {
-    const { user  } = useAuthContext();
-    
-    if (requiredRole && user?.roles && !!requiredRole.length && !arrayIntersect(user?.roles, requiredRole).length) {
-        return <Navigate to="/" replace />;
+const RolesGuard: React.FC<Props> = ({ children, requiredRoles }) => {
+    const { user } = useAuthContext();
+
+    if (requiredRoles && user?.roles && !!requiredRoles.length && !arrayIntersect(user?.roles, requiredRoles).length) {
+        return <Navigate to={UNAUTHORIZED_PAGE} replace />;
     }
 
     return <AuthGuard>{children}</AuthGuard>;
