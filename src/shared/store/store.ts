@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
+import accountSlice from './slices/accountSlice';
 
 const createRootReducer = (asyncReducers = {}) => {
   return combineReducers({
-    ...asyncReducers
+    ...asyncReducers,
+    account:accountSlice
   });
 };
 

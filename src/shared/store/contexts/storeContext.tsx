@@ -1,11 +1,9 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { Provider } from 'react-redux';
-import { Store } from '@reduxjs/toolkit';
-import store, { injectReducer } from '../store';
+import store from '../store';
 
 interface StoreContextType {
-    store: Store,
-    injectReducer: (key: string, reducer: any) => void
+  
 }
 
 
@@ -14,13 +12,14 @@ const Context = createContext<StoreContextType | null>(null);
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const value = {
-        store,
-        injectReducer
+      
     }
 
     return (
         <Context.Provider value={value}>
-            <Provider store={store}>{children}</Provider>
+            <Provider store={store}>
+                {children}
+            </Provider>
         </Context.Provider>
     );
 };
