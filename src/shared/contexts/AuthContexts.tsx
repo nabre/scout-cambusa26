@@ -1,10 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import authService from '../services/authService';
 import { LoginCredentials, AuthContextType, User } from '../types/authTypes';
+import { useStoreContext } from '#/store/contexts/storeContext';
 
 const Context = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const {useStoreValue} = useStoreContext();
+    const account = useStoreValue('account');
+    console.log('account:', account);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState<User | null>(null);
 
