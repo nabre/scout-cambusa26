@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
     envDir,
     resolve: {
       alias: {
-        '@': path.join(__dirname, 'src'),
+        '@': path.join(__dirname, './src'),
         '#': path.join(__dirname, '../../shared'),
       },
     },

@@ -24,10 +24,14 @@
             "./node_modules/@types",
             "./global.d.ts"
         ],
+        
         "paths": {
             "@/*": [
                 "src/*"
-            ]
+            ],
+            "#/*": [
+                "../../shared/*"
+            ],
         }
     },
     "include": [

@@ -1,25 +1,19 @@
 import { LoginCredentials, User } from '../types/authTypes';
-import { LOGIN_ENDPOINT } from '../constants/apiEndpoints';
+import { LOGIN_ENDPOINT, LOGOUT_ENDPOINT, USER_PROFILE_ENDPOINT } from '../constants/apiEndpoints';
 import { TOKEN_KEY } from '../constants/authConstants';
-import client from '../client/axiosClient';
-
+import client from '../client/apiEndpoints';
 
 const authService = {
   login: async (credentials: LoginCredentials): Promise<boolean> => {
     try {
       const response = await client.post(LOGIN_ENDPOINT, credentials);
-      
-    /*  fetch(LOGIN_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-      });*/
 
-      if (response.fulfilled) {
-        const { token } = await response.json();
+      if (response.status === 200) {
+        const { token } = await response.data;
         localStorage.setItem(TOKEN_KEY, token);
         return true;
       }
+
       return false;
     } catch (error) {
       console.error('Login error:', error);
@@ -27,8 +21,14 @@ const authService = {
     }
   },
 
-  logout: (): void => {
-    localStorage.removeItem(TOKEN_KEY);
+  logout: async (): Promise<void> => {
+    try {
+      await client.post(LOGOUT_ENDPOINT);
+      localStorage.removeItem(TOKEN_KEY);
+
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   },
 
   getToken: (): string | null => {
@@ -40,9 +40,19 @@ const authService = {
   },
 
   getUser: async (): Promise<User | null> => {
-    // Implementa la logica per ottenere i dati dell'utente
-    // Questo potrebbe coinvolgere una chiamata API usando il token
-    return null;
+    try {
+      const response = await client.get(USER_PROFILE_ENDPOINT);
+
+      if (response.status === 200) {
+        const user = await response.data;
+        return user;
+      }
+
+      return null;
+    } catch (error) {
+      console.error('Login error:', error);
+      return null;
+    }
   }
 };
 

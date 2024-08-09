@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, Draft, PayloadAction } from '@reduxjs/toolkit';
-import ApiCrudThunks from './ApiCrudThunks';
-import { Identifiable, StateWithStatus } from '../types/reduxTypes';
+import ApiCrudThunks from '../thunks/ApiCrudThunks';
+import { Identifiable, DataStateWithStatus } from '../../types/reduxTypes';
 
 class useApiReduce<T extends Identifiable> {
     public api: ApiCrudThunks<T>;
@@ -9,7 +9,7 @@ class useApiReduce<T extends Identifiable> {
         this.api= new ApiCrudThunks<T>(path);
     }
 
-    extraReducers(builder: ActionReducerMapBuilder<StateWithStatus<T>>) {
+    extraReducers(builder: ActionReducerMapBuilder<DataStateWithStatus<T>>) {
         const { fetchAll, create, update, remove } = this.api;
 
         builder

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import ApiCrudBase from '../client/ApiCrudBase';
+import ApiCrudBase from '../../client/ApiCrudBase';
 
 class ApiCrudThunks<T> {
     private api: ApiCrudBase<T>;

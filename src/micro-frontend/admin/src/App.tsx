@@ -1,21 +1,20 @@
+import { useAuthContext } from '#/contexts/AuthContexts'
+import Login from '#/components/Login'
 import React from 'react'
-import apiClient from '../../../shared/client/apiEndpoint'
 
 
-const readInfo = async () => {
-  const response = await apiClient.get('info')
-  console.log(response.data)
-}
 
 const App: React.FC = () => {
-
-  readInfo()
+  const props = useAuthContext()
 
 
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      {/* Aggiungi qui il contenuto del dashboard admin */}
+      <pre>
+        {JSON.stringify(props, null, 2)}
+      </pre>
+      <Login />
     </div>
   )
 }
