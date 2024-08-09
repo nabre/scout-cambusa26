@@ -1,17 +1,16 @@
 import React, { useState, FormEvent } from 'react';
 import { useAuthContext } from '../contexts/AuthContexts';
+import { useStoreValue } from '#/store/hooks/useStoreValue';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('michel.brenna@edu.ti.ch');
     const [password, setPassword] = useState('N@bre86L');
-    const { login,logout } = useAuthContext();
+    const { login, logout } = useAuthContext();
+    const { isAuthenticated } = useStoreValue('account');
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         const credentials = { email, password };
-        console.log(credentials)
         login(credentials);
-
         if (true) {
             //   const { from } = location.state || { from: { pathname: "/" } };
             //history.replace(from);
@@ -22,29 +21,29 @@ const Login: React.FC = () => {
 
     const handleLogout = () => {
         logout();
-    };  
+    };
 
     return (<>
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail"
-                required
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-            />
-            <button type="submit">Login</button>
-        </form>
-        <button onClick={handleLogout}>LOGOUT</button>
+        {
+            isAuthenticated ? <button onClick={handleLogout}>LOGOUT</button> : (<div>
+                <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="E-mail"
+                    required
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    required
+                />
+                <button onClick={handleSubmit}>Login</button>
+            </div>)
+        }
     </>
-
     );
 };
 

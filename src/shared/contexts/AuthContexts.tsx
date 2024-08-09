@@ -7,9 +7,10 @@ const Context = createContext({ isAuthenticated: false, login: (credentials: Log
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { login, logout } = useAccountActions();
-
     const account = useStoreValue('account');
-    const { isAuthenticated, user } = account;
+    const { isAuthenticated, user, status } = account;
+
+    if (status == 'loading') return <div>Loading...</div>
 
     return (
         <Context.Provider value={{ isAuthenticated, login, logout, user }}>
