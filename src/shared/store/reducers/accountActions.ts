@@ -24,7 +24,6 @@ export const logout = createAsyncThunk(
     'auth/logout',
     async (_, { rejectWithValue }) => {
         try {
-            // Simulazione di una chiamata API
             const response = await authService.logout();
         } catch (error) {
             return rejectWithValue((error as Error).message);
@@ -32,5 +31,19 @@ export const logout = createAsyncThunk(
     }
 );
 
+// Thunk action per il logout
+export const getUser = createAsyncThunk(
+    'auth/getUser',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await authService.getUser();
+            return response;
+        } catch (error) {
+            return rejectWithValue((error as Error).message);
+        }
+    }
+);
 
-export default { login, logout };
+
+
+export default { login, logout, getUser };

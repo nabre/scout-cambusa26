@@ -1,7 +1,8 @@
 import { User } from '#/types/authTypes';
 import { StateWithStatus } from '#/types/reduxTypes';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { login, logout } from '../reducers/accountActions';
+import { login, logout, getUser } from '../reducers/accountActions';
+import authService from "#/services/authService";
 
 // Definizione dello stato dello slice
 interface AccountState extends StateWithStatus {
@@ -34,7 +35,12 @@ const accountSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload;
-        state.isAuthenticated = true;
+        state.isAuthenticated = authService.isAuthenticated();
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+        state.isAuthenticated = authService.isAuthenticated();
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
@@ -44,11 +50,11 @@ const accountSlice = createSlice({
       // Logout cases
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.isAuthenticated = false;
+        state.isAuthenticated = authService.isAuthenticated();
       });
   }
 });
 
-export const api = { login, logout };
+export const api = { login, logout, getUser };
 
 export default accountSlice.reducer;

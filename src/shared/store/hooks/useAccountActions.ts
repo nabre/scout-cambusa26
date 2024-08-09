@@ -15,8 +15,13 @@ export const useAccountActions = () => {
         return dispatch(api.logout());
     }, [dispatch]);
 
+    const getUser = useCallback(() => {
+        return dispatch(api.getUser());
+    }, [dispatch]);
+
     return {
         login,
         logout,
+        getUser,
     };
 };

@@ -6,9 +6,15 @@ import { useAccountActions } from '#/store/hooks/useAccountActions';
 const Context = createContext({ isAuthenticated: false, login: (credentials: LoginCredentials) => { }, logout: () => { }, user: null });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { login, logout } = useAccountActions();
+    const { login, logout, getUser } = useAccountActions();
     const account = useStoreValue('account');
     const { isAuthenticated, user, status } = account;
+
+    useEffect(() => {
+
+        getUser();
+
+    }, []);
 
     if (status == 'loading') return <div>Loading...</div>
 
