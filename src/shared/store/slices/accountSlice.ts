@@ -37,16 +37,23 @@ const accountSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = authService.isAuthenticated();
       })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.user = action.payload;
-        state.isAuthenticated = authService.isAuthenticated();
-      })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
         state.user = null;
         state.error = action.payload as string;
       })
+
+      //getUser cases
+      .addCase(getUser.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+        state.isAuthenticated = authService.isAuthenticated();
+      })
+      
       // Logout cases
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
