@@ -25,14 +25,14 @@
             "./global.d.ts"
         ],
         "paths": {
-            "@/*": [
-                "src/*"
+            "#/*": [
+                "src/shared/*"
             ]
         }
     },
     "include": [
         "src/**/*.ts",
-        "src/**/*.tsx",
+        "src/**/*.tsx"
     ],
     "exclude": [
         "node_modules"

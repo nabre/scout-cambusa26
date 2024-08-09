@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Provider } from 'react-redux';
 import { Store } from '@reduxjs/toolkit';
-import { store, injectReducer } from '../store';
+import store, { injectReducer } from '../store';
 
 interface StoreContextType {
     store: Store,
